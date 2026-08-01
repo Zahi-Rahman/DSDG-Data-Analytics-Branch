@@ -1,0 +1,22 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# Office temp files
+~$*.xlsx
+~$*.pptx
+*.pbix.bak
+
+# Rendered QA artifacts (regenerate with the render scripts if needed — don't commit)
+*.pdf
+slide-*.jpg
+slide-*.png
+
+# Python
+__pycache__/
+*.pyc
+
+# Node (only relevant if you're editing a slides/gen.js file)
+node_modules/
