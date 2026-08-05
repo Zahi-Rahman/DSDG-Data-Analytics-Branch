@@ -1,8 +1,6 @@
-# Tableau Cheat Sheet, Beginner to Intermediate
+# Tableau Cheat Sheet (Beginner to Intermediate)
 
-A working reference, not a tutorial. Keep this open while you work.
-
-## The vocabulary, once
+## Vocabulary
 
 | Term | What it means |
 |---|---|
@@ -56,7 +54,7 @@ A dashboard filter affects every chart on the dashboard at once. Right click a f
 
 Go to Dashboard, then New Dashboard. Drag worksheets from the panel on the left onto the blank canvas. Resize by dragging the edges. Add a filter, using the steps above, so viewers can slice everything at once instead of hunting through separate sheets.
 
-Before you call it done, ask if the main point reads in five seconds. If someone has to hunt for it, simplify. Fewer charts, bigger text on the number that matters most, or a title that states the finding instead of the chart type.
+Before you call it done, ask if the main point reads in a couple seconds. If someone has to hunt for it, simplify. Fewer charts, bigger text on the number that matters most, or a title that states the finding instead of the chart type.
 
 ## Publishing, Tableau Public
 
@@ -64,15 +62,15 @@ Go to Server, then Save to Tableau Public. This requires a free account. The wor
 
 ## Things that trip people up
 
-A field can show up as a measure when it should really be a dimension, like a code that is actually a category. Right click the pill and choose Convert to Dimension.
+- A field can show up as a measure when it should really be a dimension, like a code that is actually a category. Right click the pill and choose Convert to Dimension.
 
-Aggregation defaults to Sum. For something like a rate or a median, right click the pill on the shelf, then change it from Measure (Sum) to the aggregation you actually want.
+- Aggregation defaults to Sum. For something like a rate or a median, right click the pill on the shelf, then change it from Measure (Sum) to the aggregation you actually want.
 
-A chart that looks broken after adding a field usually means a mark type mismatch. Check the dropdown at the top of the Marks card.
+- A chart that looks broken after adding a field usually means a mark type mismatch. Check the dropdown at the top of the Marks card.
 
-A filter applied on one sheet does not affect the others unless you explicitly extend it at the dashboard level, using the Filters steps above.
+- A filter applied on one sheet does not affect the others unless you explicitly extend it at the dashboard level, using the Filters steps above.
 
-## Where to see what good looks like
+## * Where to see what good looks like 
 
 The Tableau Public Gallery at public.tableau.com/app. Browse by topic, sorted by what is currently featured.
 

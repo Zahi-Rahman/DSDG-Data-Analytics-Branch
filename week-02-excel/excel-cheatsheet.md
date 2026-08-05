@@ -1,10 +1,6 @@
 # Excel Cheat Sheet, Beginner to Intermediate
 
-A working reference, not a tutorial. Keep this open while you work.
-
 ## What analysts actually use Excel for
-
-This is not a formatting tool. It is how most companies still do first pass analysis.
 
 | Real use case | Why Excel and not something heavier |
 |---|---|
@@ -69,10 +65,10 @@ A circular reference warning means a formula refers to its own cell, directly or
 
 | Shortcut, Windows then Mac | What it does |
 |---|---|
-| Ctrl+Shift+L, Cmd+Shift+L | Toggle filters on the header row |
-| Ctrl+Arrow key, Cmd+Arrow key | Jump to the edge of a data block |
-| Ctrl+Shift+Arrow, Cmd+Shift+Arrow | Select to the edge of a data block |
-| Ctrl+1, Cmd+1 | Open Format Cells |
+| Ctrl+Shift+L --- Cmd+Shift+L | Toggle filters on the header row |
+| Ctrl+Arrow key --- Cmd+Arrow key | Jump to the edge of a data block |
+| Ctrl+Shift+Arrow --- Cmd+Shift+Arrow | Select to the edge of a data block |
+| Ctrl+1 --- Cmd+1 | Open Format Cells |
 | F4 (Windows only) | Toggle the dollar sign locks while editing a formula |
-| Alt+=, Cmd+Shift+T | Auto sum the selected range |
-| Ctrl+;, Cmd+; | Insert today's date |
+| Alt+= --- Cmd+Shift+T | Auto sum the selected range |
+| Ctrl+; --- Cmd+; | Insert today's date |
