@@ -1,52 +1,64 @@
-# Week 3: From Spreadsheet to Dashboard — Power BI
+# Week 3: From Spreadsheet to Dashboard — Tableau
 
 **Format:** Lesson + workshop · **Length:** ~75 minutes · **Slides:** `slides/week-03-slides.pptx`
-**Dataset:** `data/recent-grads.csv` — same dataset as Week 2, on purpose (see below).
+**Dataset:** `data/recent-grads.csv` — same file as Week 2, on purpose.
 
-## Before the session — a logistics note, not optional
-**Power BI Desktop is Windows-only.** Confirm this with members *before* the week, not when they open their laptops:
-- Windows: install [Power BI Desktop](https://powerbi.microsoft.com/desktop/) — free.
-- Mac: no native Power BI Desktop. Options, in order of preference: (1) pair Mac members with a Windows-laptop partner for this session, or (2) use the browser-based Power BI service, which is more limited but functional, or (3) if this becomes a recurring friction point across the semester, consider Tableau Public as a cross-platform alternative for future dashboard weeks — flag this to your Branch Lead rather than deciding it solo mid-session.
+## Setup
+[Tableau Public](https://public.tableau.com/) is free and works on both Mac and Windows — install it before the session, not during. No license, no account approval wait, so this should be a non-issue if sent out a few days ahead.
 
-See `resources/power-bi-setup-notes.md` for the full breakdown.
+One real trade-off worth knowing: Tableau Public saves workbooks to Tableau's public servers, visible to anyone. Fine for this dataset (it's already public data). Worth a one-line mention to the room so nobody publishes something they'd rather keep private later in the semester.
 
-## Session goals
-Members should leave able to connect a data source, build 3–4 linked visuals, and use a filter/slicer — and should understand *why* a dashboard is a different deliverable than a spreadsheet finding, not just a prettier version of one.
+## Goals
+Members can connect a data source, build a small set of linked visuals, and use a filter — and can explain why a dashboard is a different deliverable than a spreadsheet finding, not just a prettier version of one.
 
 ---
 
 ## 0. Reconnect to last week (5 min)
-Ask 2–3 people to state, in one sentence, the finding they landed on last week. Then reframe: *"That sentence is true, but if you handed someone a spreadsheet and said 'trust me,' they'd have to redo your work to believe you. A dashboard lets someone check your claim themselves, in about ten seconds. That's the whole point of today."*
+Ask 2–3 people to state last week's finding in one sentence. Then: a spreadsheet finding requires someone to trust you. A dashboard lets them check it themselves in about ten seconds.
 
----
+## 1. What analysts actually build dashboards for (10 min)
 
-## 1. Power BI orientation (15 min)
-Live-demo, don't lecture from slides for this part:
-1. **Get Data → import `recent-grads.csv`.**
-2. Point out the three panes: **Report** (what you're building), **Data** (the table, same columns as last week), **Model** (relationships — only one table today, so skip this for now, but name it so it's not a mystery later when we join multiple tables).
-3. Build one visual live, narrating every click: a bar chart of average `Median` salary by `Major_category`.
-4. Add a second visual: a scatter plot of `ShareWomen` (x-axis) vs `Median` (y-axis), one dot per major. **Click a point** to show the built-in filtering/highlighting behavior across visuals — this single interaction is usually the "oh, I get it" moment for why BI tools exist.
+Two different jobs, and mixing them up is the most common mistake:
 
----
+- **Executive dashboards** get looked at for seconds, not minutes. High-level KPIs, a clear trend, an obvious "is this good or bad." Built to be consumed passively — someone glances at it during a meeting, not explored.
+- **Analyst dashboards** get worked in actively — filtered, drilled into, cross-referenced. Built for someone hunting for the specific reason a number moved.
 
-## 2. Guided build (25 min)
-Groups rebuild the two visuals above themselves, then add a third of their choice. Push them toward reusing **their own engineered column from last week** (Underemployment_rate) if they saved it — re-derive it in Power BI with a calculated column (`Underemployment_rate = DIVIDE([Non_college_jobs] + [Low_wage_jobs], [Employed])`) if they didn't bring last week's file. Add a **slicer** on `Major_category` so the whole dashboard can be filtered to one category at a time.
+A dashboard trying to be both usually fails at both. Know which one you're building before you open Tableau.
 
-**Design note to give the room explicitly:** *"A chart that only you can interpret isn't a finding yet — it's a draft. Titles, labeled axes, and a one-line takeaway written near the chart are not decoration, they're the difference between a chart and a dashboard."*
+What tends to separate a genuinely good dashboard from a busy one:
+- The main point is readable in five seconds. If someone has to study it, the format is wrong, not the audience.
+- 5–9 key numbers on screen, not 20. More than that and nothing stands out.
+- Every number has something to compare against — a target, a prior period, another category. "3.2%" means nothing alone.
+- Most important number biggest and top-left — that's where eyes land first.
+- No 3D charts, no chart type chosen because it looks impressive. The simplest chart that makes the point wins.
 
----
+**Worth looking at before you build:** [Tableau Public's gallery](https://public.tableau.com/app) and the [Makeover Monday](https://makeovermonday.co.uk/) project — a weekly community exercise where people rebuild the same chart well. Skimming a few makes the difference between a good and busy dashboard concrete in a way a slide can't.
 
-## 3. Dashboards for a real audience (20 min)
-Reconvene as one group. Put 2–3 dashboards on the projector. For each, ask the room (not just the presenting group): *"If you had never seen this dataset, what would you understand from this screen in the first five seconds?"* This is a critique exercise, not a grading one — the point is that members start evaluating dashboards the way an actual audience will, not the way the person who built it does.
+## 2. Tableau orientation (15 min)
+Live-demo, don't lecture from slides:
+1. **Connect → Text File →** `recent-grads.csv`.
+2. Point out the **Data pane** (left: Dimensions on top, Measures below), and the blank **View** in the center.
+3. Build one chart live: drag `Major_category` to Columns, `Median` to Rows. Right-click `Median` → change aggregation to Average.
+4. Drag `ShareWomen` to Columns and `Median` to Rows on a new sheet — a scatter, one dot per major. Drag `Major_category` onto **Color** on the Marks card.
 
-Common fixes that come up almost every time, worth naming preemptively: unlabeled axes, a color scheme with no clear meaning, too many visuals competing for attention, a title that describes the chart type instead of the finding (*"Bar Chart of Salary"* vs. *"Engineering Majors Out-Earn Everything Else"*).
+## 3. Guided build (25 min)
+Groups rebuild both charts, then combine them onto a **Dashboard** (new dashboard, not worksheet — drag both sheets onto it). Add a filter: right-click `Major_category` in one sheet → **Show Filter**, then use the dashboard's filter menu to apply it to all sheets at once.
 
----
+If a group brought their Week 2 engineered column, have them rebuild it as a **calculated field**: right-click in the Data pane → **Create → Calculated Field**.
+```
+[Non_college_jobs] + [Low_wage_jobs] / [Employed]
+```
+Every chart needs a title that states the finding, not the chart type — "Engineering Out-Earns Everything Else," not "Bar Chart of Salary."
 
-## 4. Wrap-up (5 min)
-Preview: *"Week 4 is yours — same dataset, but this time you're choosing your own question from scratch, building the analysis in Excel and the dashboard in Power BI, and presenting it to the rest of the branch. Everything the last two weeks taught you, you'll now use without a script."*
+## 4. Dashboards for a real audience (15 min)
+Put 2–3 dashboards on the projector. Ask the room, not just the presenting group: what would you understand from this in five seconds? This is critique, not grading — the point is that members start evaluating dashboards the way a real audience will.
+
+Fixes that come up almost every time: unlabeled axes, a color scheme with no clear meaning, too many charts competing for attention, a title that names the chart type instead of the finding.
+
+## 5. Wrap-up (5 min)
+Week 4 is theirs: same dataset, their own question, Excel and Tableau together, no script.
 
 ## Materials in this folder
-- `data/recent-grads.csv` — identical file to Week 2's, so groups can carry forward their Week 2 thinking
-- `resources/power-bi-setup-notes.md`
+- `data/recent-grads.csv`
+- `resources/tableau-cheatsheet.md` — reference for the whole semester
 - `slides/week-03-slides.pptx`
