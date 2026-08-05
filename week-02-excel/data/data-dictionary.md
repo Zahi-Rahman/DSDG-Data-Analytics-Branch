@@ -1,25 +1,28 @@
-# Data Dictionary — `recent-grads.csv`
+# Data Dictionary: nps_units.csv
 
-**Source:** FiveThirtyEight, [`college-majors`](https://github.com/fivethirtyeight/data/tree/master/college-majors) repo, originally built from American Community Survey data for the story *"The Economic Guide to Picking a Major."*
-**Grain:** one row per undergraduate major (173 majors total).
+Source: National Park Service Land Resources Division, official acreage report. Real government data, checked against the published total of 84,735,954 acres. Our copy is within 16 acres of that total out of 84.7 million, which is rounding, not error.
 
-Reading a data dictionary before opening the file is a habit, not a formality — professional analysts always check what a column actually measures before trusting it.
+Grain: one row per National Park Service unit. 410 units total.
+
+The National Park Service manages far more than "national parks." It runs 19 different types of sites: monuments, historic sites, battlefields, seashores, and more. Most people have never seen this distinction. That is part of why this dataset is interesting.
 
 | Column | Meaning |
 |---|---|
-| `Rank` | Major's rank by median salary (1 = highest) — already computed, not something to reverse-engineer |
-| `Major_code`, `Major` | Federal major code and full major name |
-| `Major_category` | Broader grouping (e.g., Engineering, Business, Arts) — 16 categories total |
-| `Total`, `Men`, `Women` | Total graduates and the gender breakdown |
-| `ShareWomen` | Women as a share of total graduates (0–1) |
-| `Sample_size` | How many survey respondents this row is based on — **small values mean less reliable stats. Ranges from 2 to 4,212 in this file.** |
-| `Employed`, `Unemployed`, `Unemployment_rate` | Employment status among people in the labor force |
-| `Full_time`, `Part_time`, `Full_time_year_round` | Employment type breakdown |
-| `College_jobs` | Employed in a job that typically requires a college degree |
-| `Non_college_jobs` | Employed in a job that typically doesn't require one |
-| `Low_wage_jobs` | Employed in a job below a low-wage threshold |
-| `Median`, `P25th`, `P75th` | Median, 25th-percentile, and 75th-percentile salary in USD |
+| Unit_Name | Official name of the unit |
+| Designation | The type of unit. Parsed from the name. 27 of 410 units did not match a clean pattern and are labeled "Other Designation." This is a real limit of the source data, not a mistake in cleaning it. |
+| State | State or states the unit sits in. Some units span more than one state, written like "MD-VA" |
+| Region | The NPS administrative region managing the unit (Alaska, Intermountain, Midwest, National Capital, Northeast, Pacific West, Southeast, National Trails) |
+| NPS_Fee_Acres | Land the NPS owns outright |
+| NPS_Less_Than_Fee_Acres | Land where the NPS holds a partial interest, such as an easement, not full ownership |
+| Other_Federal_Fee_Acres | Land inside the unit's boundary owned by a different federal agency |
+| Subtotal_Federal_Acres | Sum of the three columns above |
+| Other_Public_Acres | Land owned by a state or local government |
+| Private_Acres | Land inside the boundary that is still privately owned |
+| Subtotal_Non_Federal_Acres | Other_Public_Acres plus Private_Acres |
+| Gross_Area_Acres | The full boundary of the unit, federal and non federal land combined |
 
-## A flag worth building into your analysis, not skipping past
+## Two things worth noticing before you build anything
 
-32 of the 173 majors have a `Sample_size` under 30 — standard statistics practice treats that as too small to trust a summary statistic like a median. One row is even based on a sample of 2 graduates. A major's salary figure and its reliability are two different questions, and a good analysis answers both. This is exactly the kind of thing a toy/cleaned classroom dataset wouldn't force you to notice — real data makes you decide how much to trust it.
+The smallest units are under one acre. The Mary McLeod Bethune Council House in Washington, DC is 0.07 acres, a single house. The largest, Wrangell-St Elias National Preserve in Alaska, is over 8.3 million acres. That is not a typo. Sort the data and see for yourself.
+
+The median unit is about 1,900 acres. The average is over 200,000 acres. Those two numbers should not be anywhere close to each other, and the gap tells you something real about the shape of this dataset before you have written a single formula.

@@ -1,4 +1,4 @@
-# Tableau Cheat Sheet — Beginner to Intermediate
+# Tableau Cheat Sheet, Beginner to Intermediate
 
 A working reference, not a tutorial. Keep this open while you work.
 
@@ -6,67 +6,74 @@ A working reference, not a tutorial. Keep this open while you work.
 
 | Term | What it means |
 |---|---|
-| **Worksheet** | One single chart. A workbook has many. |
-| **Dashboard** | Several worksheets combined onto one screen, often with shared filters. This is what you present. |
-| **Story** | A sequence of dashboards/worksheets set up to walk through in order — useful for a narrative, less common than a plain dashboard. |
-| **Dimension** | A qualitative field (category, name, date) — shows up blue in the Data pane. |
-| **Measure** | A quantitative field (something you can sum, average, count) — shows up green in the Data pane. |
-| **Shelf** | A drop target that builds structure — Rows, Columns, Filters, Pages. |
-| **Marks card** | Controls how each data point looks — color, size, label, detail, tooltip. |
-| **Pill** | A field once it's sitting on a shelf or card (named for the little pill shape). |
+| Worksheet | One single chart. A workbook holds many. |
+| Dashboard | Several worksheets combined onto one screen, often with a shared filter. This is what you present. |
+| Story | A sequence of dashboards set up to walk through in order. Useful for a narrative, but less common than a plain dashboard. |
+| Dimension | A qualitative field, like a category or a name. Shows up blue in the Data pane. |
+| Measure | A quantitative field, something you can sum, average, or count. Shows up green in the Data pane. |
+| Shelf | A drop target that builds structure. Rows, Columns, Filters, and Pages are all shelves. |
+| Marks card | Controls how each data point looks. Color, size, label, detail, and tooltip all live here. |
+| Pill | A field once it is sitting on a shelf or card, named for its rounded shape. |
 
 ## Building your first chart
 
-1. **Connect → Text File** (or Excel), pick your file.
-2. Drag a **dimension** to Columns, a **measure** to Rows — Tableau picks a default chart type based on what you dropped.
-3. Change the chart type from the **Marks card** dropdown (top of that card) if the default isn't what you want.
-4. Drag a field onto **Color** on the Marks card to split the chart by category or shade it by a number.
-5. Not sure what chart fits your data? Select your fields in the Data pane, then check **Show Me** (top right) — it grays out chart types that don't fit your selection.
+1. Connect, then Text File, and pick your file.
+2. Drag a dimension to Columns and a measure to Rows. Tableau picks a default chart type based on what you dropped.
+3. Change the chart type from the dropdown at the top of the Marks card, if the default is not what you want.
+4. Drag a field onto Color on the Marks card to split the chart by category or shade it by a number.
+5. Not sure what chart fits your data? Select your fields in the Data pane, then check Show Me in the top right corner. It grays out any chart type that does not fit your selection.
 
 ## Common builds
 
 | You want | Do this |
 |---|---|
-| Bar chart, one value per category | Dimension → Columns, Measure → Rows |
-| Line chart over time | Date field → Columns, Measure → Rows, then right-click the date pill → choose the time granularity (Month, Quarter, Year) |
-| Scatter plot (compare two measures) | Measure → Columns, a different Measure → Rows — one dot per row of your data |
-| Split a chart by category | Drag the category field onto **Color** |
-| Size dots/bars by a number | Drag a measure onto **Size** |
-| Change what shows on hover | Drag a field onto **Tooltip** |
+| A bar chart, one value per category | Dimension to Columns, Measure to Rows |
+| A line chart over time | Date field to Columns, Measure to Rows. Right click the date pill to choose the time granularity, like Month or Year |
+| A scatter plot comparing two measures | One measure to Columns, a different measure to Rows. One dot appears per row of your data |
+| Splitting a chart by category | Drag the category field onto Color |
+| Sizing dots or bars by a number | Drag a measure onto Size |
+| Changing what shows on hover | Drag a field onto Tooltip |
 
 ## Calculated fields
 
-For a column that doesn't exist yet — same idea as an Excel formula.
+For a column that does not exist yet. Same idea as an Excel formula.
 
-Right-click in the Data pane → **Create → Calculated Field**.
+Right click in the Data pane, then Create, then Calculated Field.
+
 ```
-Underemployment Rate = ([Non_college_jobs] + [Low_wage_jobs]) / [Employed]
+Pct Federal = [Subtotal_Federal_Acres] / [Gross_Area_Acres]
 ```
-The result becomes a new field you can drag onto any shelf like any other measure.
+
+The result becomes a new field you can drag onto any shelf, just like any other measure.
 
 ## Filters
 
-- **Worksheet filter**: drag a field to the **Filters** shelf — affects only that one chart.
-- **Dashboard filter**: right-click a field's pill on a sheet → **Show Filter**, then on the dashboard, click the filter's dropdown arrow → **Apply to Worksheets → All Using This Data Source**. Now one filter controls every chart on the dashboard at once.
+A worksheet filter affects only one chart. Drag a field to the Filters shelf.
+
+A dashboard filter affects every chart on the dashboard at once. Right click a field's pill on a sheet and choose Show Filter. Then on the dashboard, click the filter's dropdown arrow, choose Apply to Worksheets, then All Using This Data Source.
 
 ## Building a dashboard
 
-**Dashboard → New Dashboard.** Drag worksheets from the left panel onto the blank canvas. Resize by dragging edges. Add a filter (above) so viewers can slice everything at once instead of hunting through separate sheets.
+Go to Dashboard, then New Dashboard. Drag worksheets from the panel on the left onto the blank canvas. Resize by dragging the edges. Add a filter, using the steps above, so viewers can slice everything at once instead of hunting through separate sheets.
 
-Before you call it done, ask: does the main point read in five seconds? If someone has to hunt for it, simplify — fewer charts, bigger text on the number that matters most, or a title that states the finding instead of the chart type.
+Before you call it done, ask if the main point reads in five seconds. If someone has to hunt for it, simplify. Fewer charts, bigger text on the number that matters most, or a title that states the finding instead of the chart type.
 
-## Publishing (Tableau Public)
+## Publishing, Tableau Public
 
-**Server → Save to Tableau Public.** Requires a free Tableau Public account. The workbook becomes visible to anyone with the link (and searchable in the public gallery) — don't publish anything with data you don't want public.
+Go to Server, then Save to Tableau Public. This requires a free account. The workbook becomes visible to anyone with the link, and it is searchable in the public gallery. Do not publish anything built on data you want to keep private.
 
 ## Things that trip people up
 
-- A field showing up as a **measure** when it should be a **dimension** (like a code that's actually a category, e.g. a ZIP code) — right-click the pill → **Convert to Dimension**.
-- Aggregation defaults to **Sum**. For something like a rate or a median, right-click the pill on the shelf → **Measure (Sum)** → change it.
-- A chart that looks broken after adding a field usually means a mark type mismatch — check the Marks card dropdown.
-- Filters applied on one sheet don't affect others unless you explicitly extend them at the dashboard level (see Filters above).
+A field can show up as a measure when it should really be a dimension, like a code that is actually a category. Right click the pill and choose Convert to Dimension.
 
-## Where to see what "good" looks like
+Aggregation defaults to Sum. For something like a rate or a median, right click the pill on the shelf, then change it from Measure (Sum) to the aggregation you actually want.
 
-- [Tableau Public Gallery](https://public.tableau.com/app) — browse by topic, sorted by what's currently featured.
-- [Makeover Monday](https://makeovermonday.co.uk/) — a weekly project where people rebuild the same chart better. Seeing five different takes on one dataset makes "good vs. busy" concrete fast.
+A chart that looks broken after adding a field usually means a mark type mismatch. Check the dropdown at the top of the Marks card.
+
+A filter applied on one sheet does not affect the others unless you explicitly extend it at the dashboard level, using the Filters steps above.
+
+## Where to see what good looks like
+
+The Tableau Public Gallery at public.tableau.com/app. Browse by topic, sorted by what is currently featured.
+
+Makeover Monday at makeovermonday.co.uk. A weekly project where people rebuild the same chart to make it better. Seeing five different takes on one dataset makes the gap between good and busy concrete fast.

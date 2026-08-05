@@ -1,6 +1,6 @@
-# Mini-Project 1 — What "Good" Looks Like
+# Mini Project 1: What "Good" Looks Like
 
-Not used for a formal grade — shared alongside the brief so nobody's guessing, and used by officers to give real feedback during Q&A.
+Not used for a formal grade. This is shared alongside the brief so nobody is guessing, and officers use it to give real feedback during questions.
 
 | Dimension | Developing | Solid | Strong |
 |---|---|---|---|

@@ -1,72 +1,71 @@
 # Week 1: What This Branch Is, What This Field Is, and Your First Commit
 
-**Format:** Lesson + hands-on · **Length:** ~75 minutes · **Slides:** `slides/week-01-slides.pptx`
+Format: Lesson and hands-on. Length: about 75 minutes. Slides: slides/week-01-slides.pptx
 
 ## Goals
+
 Members can explain the difference between data analytics, data science, and the other data-adjacent roles. They know where this branch leads if they want to go further. They can clone a repo, commit, and push.
 
----
-
 ## 0. Welcome (5 min)
-Quick intros if the group's small: name, major, year, one dataset they'd love to dig into if they could. If it's large, skip intros — instead poll by show of hands: who's used Excel seriously, who's touched SQL, who's coded at all. Tells you whether the GitHub section later needs to move slow or fast.
 
-One-line framing for the semester: this branch is about asking a good question of a messy dataset and defending the answer. Tools are just how you practice that. Builds toward a capstone presented to the whole club at semester's end.
+Quick intros if the group is small: name, major, year, one dataset they would love to dig into if they could. If the group is large, skip intros. Poll instead by show of hands: who has used Excel seriously, who has touched SQL, who has coded at all. This tells you whether the GitHub section later needs to move slow or fast.
 
----
+One line framing for the semester: this branch is about asking a good question of a messy dataset and defending the answer. Tools are just how you practice that. It builds toward a capstone presented to the whole club at the end of the semester, on a topic members choose themselves.
 
-## 1. Data Analytics vs. Data Science vs. everything else (15 min)
+## 1. Data Analytics versus Data Science versus everything else (15 min)
 
-Ask the room to guess before you explain. Write four role names on the board — Data Analyst, Data Scientist, Data Engineer, Consultant — and get guesses first.
+Ask the room to guess before you explain. Write four role names on the board: Data Analyst, Data Scientist, Data Engineer, Consultant. Get guesses first.
 
-**The rough split** (real job titles overlap more than this):
-- **Data Analyst** — answers a specific question with data that mostly already exists. Backward-looking: what happened, and why?
-- **Data Scientist** — builds predictive models on messier, larger data, more code-heavy. Forward-looking: what's likely next?
-- **Data Engineer** — builds the pipelines that get data usable in the first place.
-- **Consultant** — packages analysis into a business recommendation for a client, often with people from several disciplines — tie this to our own branch structure.
+The rough split, and real job titles overlap more than this suggests:
 
-All four need the same foundation: SQL, some statistics, and the ability to explain a finding to someone who wasn't in the room. That foundation is this branch. Which direction from here — Analyst-track, Data Science, or an application to Consulting — is a later decision.
+Data Analyst answers a specific question with data that mostly already exists. Backward looking: what happened, and why.
 
----
+Data Scientist builds predictive models on messier, larger data, more code heavy. Forward looking: what is likely next.
+
+Data Engineer builds the pipelines that get data usable in the first place.
+
+Consultant packages analysis into a business recommendation for a client, often working with people from several disciplines. Tie this to our own branch structure directly.
+
+All four need the same foundation: SQL, some statistics, and the ability to explain a finding to someone who was not in the room. That foundation is this branch. Which direction from here, whether Analyst track, Data Science, or an application to Consulting, is a later decision.
 
 ## 2. Career paths and outcomes (15 min)
 
-Use current numbers, not vibes — ask your Branch Lead for the latest each semester. As of this curriculum: SQL and Excel show up in most entry-level analyst postings, Python is a fast-growing differentiator, and communication is named almost as often as any technical tool.
+Use current numbers, not vibes. Ask your Branch Lead for the latest each semester. As of this curriculum: SQL and Excel show up in most entry level analyst postings, Python is a fast growing differentiator, and communication is named almost as often as any technical tool.
 
-Every project this semester uses real data, not textbook data, because that's what gets people hired. Connect it to the pipeline: doing well here, especially a strong capstone, is the most direct path to the Consulting branch.
+Every project this semester uses real data, not textbook data, because that is what gets people hired. Connect it to the pipeline: doing well here, especially building a strong capstone, is the most direct path to the Consulting branch.
 
-Optional hook for next week: Week 2's dataset is about what actually happens to people after they pick a major — real earnings data across 173 majors, with at least one pattern worth arguing about. Don't give it away.
+Optional hook for next week: week 2's dataset covers every unit the National Park Service manages, not just the famous parks. There is a genuinely surprising pattern in it. Do not give it away.
 
----
+## 3. GitHub quickstart (30 min), hands-on
 
-## 3. GitHub quickstart (30 min) — hands-on
-
-Framing: nobody needs to understand git deeply today. Five commands, used almost every week — the goal is muscle memory.
+Framing: nobody needs to understand git deeply today. Five commands, used almost every week. The goal is muscle memory.
 
 ### Setup (5 min)
-Everyone needs a free GitHub account and git installed (built into Mac/Linux; Windows needs [Git for Windows](https://gitforwindows.org)). Send this as a reminder before the session, not during — installs eat time unpredictably.
+
+Everyone needs a free GitHub account and git installed. It is built into Mac and Linux. Windows needs Git for Windows. Send this as a reminder before the session, not during it. Installs eat time unpredictably.
 
 ### The five commands (10 min)
-Walk through `resources/github-quickstart-cheatsheet.md`:
-1. `git clone <url>` — copy a repo, once.
-2. `git pull` — get the latest, every session.
-3. `git add <file>` — mark a file as ready to save.
-4. `git commit -m "message"` — save it with a note.
-5. `git push` — send it to GitHub.
+
+Walk through resources/github-quickstart-cheatsheet.md.
+
+git clone, to copy a repo, just once.
+git pull, to get the latest, every session.
+git add, to mark a file as ready to save.
+git commit with a message, to save it with a note.
+git push, to send it to GitHub.
 
 ### Hands-on: first commit (15 min)
-1. Everyone clones this repo.
-2. Opens `resources/welcome-wall.md`, adds one line: name + a topic they'd love to analyze.
-3. `git add` → `git commit -m "..."` → `git push`.
-4. Pull up the commit history together on GitHub.
 
-If someone hits a merge conflict — likely, with everyone editing one file — walk one group through resolving it live. Better learned now than mid-project in week 10.
+Everyone clones this repo. Opens resources/welcome-wall.md and adds one line: name plus a topic they would love to analyze. Runs git add, then git commit with a message, then git push. Pull up the commit history together on GitHub.
 
----
+If someone hits a merge conflict, and it is likely with everyone editing one file, walk one group through resolving it live. It is better learned now than mid project in week 10.
 
-## 4. Wrap-up (5 min)
-Recap in one line each: the field, the path, the five commands. Preview week 2: real Excel work on a dataset about what happens after people pick a major.
+## 4. Wrap up (5 min)
+
+Recap in one line each: the field, the path, the five commands. Preview week 2: real Excel work on a dataset covering every unit the National Park Service manages.
 
 ## Materials in this folder
-- `slides/week-01-slides.pptx`
-- `resources/github-quickstart-cheatsheet.md`
-- `resources/welcome-wall.md`
+
+slides/week-01-slides.pptx
+resources/github-quickstart-cheatsheet.md
+resources/welcome-wall.md

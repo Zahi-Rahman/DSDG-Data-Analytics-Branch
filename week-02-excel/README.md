@@ -1,64 +1,59 @@
 # Week 2: Excel as a Real Analytical Tool
 
-**Format:** Lesson + workshop · **Length:** ~75 minutes · **Slides:** `slides/week-02-slides.pptx`
-**Dataset:** `data/recent-grads.csv` — read `data/data-dictionary.md` first.
+Format: Lesson and workshop. Length: about 75 minutes. Slides: slides/week-02-slides.pptx
+Dataset: data/nps_units.csv. Read data/data-dictionary.md first.
 
 ## Goals
-Members can build a pivot table to answer a specific question, write a formula that creates a new column rather than reading an existing one, and generate their own question instead of only answering a given one.
 
-Not a goal this week: Excel mastery. SQL and Python get more time later in the semester — today is "enough to think with a spreadsheet."
+Members can build a pivot table to answer a specific question. They can write a formula that creates a new column instead of just reading an existing one. Most importantly, by the end of the session they can come up with their own question, not just answer one they were handed.
 
----
+This week is intentionally lighter than a full Excel course. SQL and Python get more time later in the semester. Today is about being able to think with a spreadsheet, not mastering every Excel feature that exists.
 
 ## 0. What Excel is actually for (5 min)
-Before opening the file: Excel isn't a formatting tool, it's how most companies still do first-pass analysis. Analysts use it to check a claim in an afternoon, before anything gets built in SQL or a BI tool. It's often the fastest way to answer a question with under ~100K rows.
 
-Callback to last week: today's dataset makes that conversation real — 173 majors, real employment and salary outcomes, from an actual national survey. By the end you'll have an opinion, backed by a number, about something in here.
+Before opening the file, say this plainly: companies still use Excel for first pass analysis all the time. An analyst checks a claim in an afternoon with Excel, long before anyone builds it into SQL or a dashboard. It is usually the fastest way to get an answer when the data is under about 100,000 rows.
 
-Open the file together. Ask: "skim the headers — what's one column you're not sure about?" Answer 2–3 out loud, then point to `data-dictionary.md` for the rest.
+Today's dataset covers all 410 units the National Park Service manages. Most people only know the famous parks. By the end of today, your group will know something about this system that almost nobody else on campus knows.
 
----
+Open the file together. Ask the room: skim the column names. Which one are you not sure about? Answer two or three out loud, then point to the data dictionary for the rest.
 
 ## 1. Core Excel moves (25 min)
 
-Pose the question before the formula.
+Ask the question first. Show the formula second.
 
-**a) Sort & filter (5 min)** — Which majors have the highest unemployment rate? Sort descending. Then check `Sample_size` for those rows — same ranking, less trust?
+a) Sort and filter (5 min). Sort by Gross_Area_Acres. Look at the smallest units and the largest. The smallest is a fraction of an acre. The largest is over eight million. Ask the room what they think explains a gap that size.
 
-**b) A calculated column (10 min)** — Total and employed graduates don't show how many end up outside their field. Build together:
-```
-Underemployment_rate = (Non_college_jobs + Low_wage_jobs) / Employed
-```
-That's feature engineering — a column that didn't exist. Most of an analyst's job is exactly this; raw columns rarely answer the real question alone.
+b) A calculated column (10 min). Build this together:
 
-**c) Pivot table (10 min)** — Group by `Major_category`. Which category has the best median salary? Best employment rate? Add `Unemployment_rate` as a second value field to compare two things at once.
+Pct_Federal = Subtotal_Federal_Acres / Gross_Area_Acres
 
----
+State it plainly: you just built a column that did not exist. That is most of what an analyst does all day. The raw columns rarely answer the real question by themselves.
+
+c) Pivot table (10 min). Group by Designation. Which type of unit has the most land on average? Add Region as a second row field and compare across regions too.
 
 ## 2. The relationship worth arguing about (15 min)
 
-Compute the correlation between `ShareWomen` and `Median` salary with `=CORREL(range1, range2)`.
+Have groups compute the median Gross_Area_Acres for Alaska units and for everywhere else, using AVERAGEIF or a quick filter and manual check.
 
-It's a real, meaningfully negative correlation. Let the room sit with it, then ask: name three explanations for this pattern that aren't just "discrimination" or "coincidence." Push for at least: industry differences between majors, historical enrollment patterns, and the fact that correlation alone can't separate any of these. The point isn't a conclusion — it's the habit of asking what else could explain a pattern before repeating a correlation as a cause.
+The Alaska median is close to 1.4 million acres. The median for the rest of the country is under 2,000 acres. That is roughly a 900 times difference.
 
----
+Ask the room directly: does this mean Alaska's parks matter more, or does it mean a handful of enormous outliers are distorting anything we calculate using the whole dataset at once? Push for a real answer, not just a shrug. This is the same lesson as looking at mean versus median. A dataset with a few extreme values can make an average lie to you, and the only way to catch it is to check.
 
 ## 3. Open exploration (25 min)
 
-Groups of 3–4. Prompt: find one relationship you didn't expect, using at least one column you built yourself. No approved question list. If a group is stuck, point them to `docs/asking-better-analytical-questions.md` rather than giving them a question.
+Groups of three or four. The prompt: find one relationship in this dataset you did not expect, using at least one column you built yourself.
 
-Good sign: a group is building a column, not just sorting existing ones. Early finishers get pushed toward a second, harder question.
+Do not hand out an approved list of questions. If a group is stuck, point them to docs/asking-better-analytical-questions.md instead of giving them a question directly.
 
-Last 5 minutes: 2–3 groups share what they found, 60 seconds each — a preview of what week 4 looks like at full scale.
+Good signs a group is on track: they are building a new column, not just sorting an existing one. They can state their question as a full sentence. A group that finishes early should be pushed toward a second, harder question, ideally one that needs a second calculated column.
 
----
+Last five minutes: two or three groups share what they found, sixty seconds each. This is a small preview of what week four looks like at full scale.
 
-## 4. Wrap-up (5 min)
-Next week: same data, into Tableau — because a finding someone has to take your word for isn't a finding yet.
+## 4. Wrap up (5 min)
+
+Next week, this same dataset goes into Tableau. A finding that someone has to take your word for is not a finding yet. Bring whatever you built today. Your calculated columns carry forward.
 
 ## Materials in this folder
-- `data/recent-grads.csv`, `data/data-dictionary.md`
-- `scripts/fetch_dataset.py` — reproducible source, rerun each semester
-- `starter/week-02-starter.xlsx`
-- `resources/excel-cheatsheet.md` — reference for the whole semester
-- `slides/week-02-slides.pptx`
+
+- data/nps_units.csv and data/data-dictionary.md
+- slides/week-02-slides.pptx
