@@ -72,3 +72,18 @@ A circular reference warning means a formula refers to its own cell, directly or
 | F4 (Windows only) | Toggle the dollar sign locks while editing a formula |
 | Alt+= --- Cmd+Shift+T | Auto sum the selected range |
 | Ctrl+; --- Cmd+; | Insert today's date |
+
+## Using AI with spreadsheets
+
+| Approach | What it looks like | Why it's useful |
+|---|---|---|
+| Built-in AI extensions | Copilot or Claude in Excel | Works directly inside the file |
+| AI as an external tool | Paste a formula/dataset/question into a chatbot | Good for generating explanations |
+
+## How to use AI as an external tool
+
+| Task | How AI helps |
+|---|---|
+| Formula debugging | Paste a formula and get a working version and an explanation of how it works | 
+| Data cleaning | Paste messy data and get the cleaned version | 
+| Structuring a pivot table | Get guidance on what goes in the rows, columns, and values | 
