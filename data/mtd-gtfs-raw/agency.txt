@@ -1,0 +1,2 @@
+agency_phone,agency_fare_url,agency_url,agency_id,agency_name,agency_timezone,agency_lang,agency_email
+217-384-8188,https://mtd.org/fares-passes/,https://www.mtd.org/,CUMTD,Champaign Urbana Mass Transit District,America/Chicago,en,mtdweb@mtd.org
