@@ -23,7 +23,7 @@
 
 ## Common builds
 
-| You want | Do this |
+| Task | Steps |
 |---|---|
 | A bar chart, one value per category | Dimension to Columns, Measure to Rows |
 | A line chart over time | Date field to Columns, Measure to Rows. Right click the date pill to choose the time granularity, like Month or Year |
@@ -70,7 +70,7 @@ Go to Server, then Save to Tableau Public. This requires a free account. The wor
 
 - A filter applied on one sheet does not affect the others unless you explicitly extend it at the dashboard level, using the Filters steps above.
 
-## * Where to see what good looks like 
+## * Example Dashboards
 
 The Tableau Public Gallery at public.tableau.com/app. Browse by topic, sorted by what is currently featured.
 
