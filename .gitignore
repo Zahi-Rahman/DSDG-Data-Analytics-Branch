@@ -13,3 +13,5 @@ Thumbs.db
 __pycache__/
 *.pyc
 
+data/nyc_ferry_hourly.csv
+node_modules/

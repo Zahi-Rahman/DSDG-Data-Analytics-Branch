@@ -2,47 +2,49 @@
 
 ## Where this data came from
 
-Downloaded directly from MTD's official GTFS static feed at mtd.dev/gtfs.zip, the Champaign-Urbana Mass Transit District's own developer portal. The feed covers service from May 17, 2026 through December 19, 2026, so this is live data for the actual semester this curriculum runs in.
+Downloaded from MTD's static GTFS feed at mtd.dev/gtfs.zip, on the Champaign-Urbana Mass Transit District's developer portal. The feed covers service from May 17, 2026 through December 19, 2026, which includes the semester this curriculum runs in.
 
-The raw download is a zip file containing eight text files, all comma-delimited despite the .txt extension. Every one of those eight files sits unedited in data/mtd-gtfs-raw/, including the one not loaded into the database. What follows explains exactly what got used and what didn't, and why.
+The raw download is a zip file of eight text files. GTFS names its files with a .txt extension, and the contents are comma-separated. All eight files sit unedited in data/mtd-gtfs-raw/. Seven are loaded into mtd_transit.db. The table below lists each file.
 
 ## The eight raw files
 
-| File | Rows | Loaded into mtd_transit.db | Comments |
+| File | Data rows | Loaded into mtd_transit.db | Comments |
 |---|---|---|---|
-| agency.txt | 1 | Yes | One row, MTD's own agency record |
+| agency.txt | 1 | Yes | One row, MTD's agency record |
 | routes.txt | 90 | Yes | Core table |
 | trips.txt | 8,222 | Yes | Core table |
 | stops.txt | 1,936 | Yes | Core table |
 | stop_times.txt | 321,337 | Yes | Core table, the largest one |
 | calendar.txt | 514 | Yes | Core table |
 | calendar_dates.txt | 17,281 | Yes | Core table |
-| shapes.txt | 62,714 | No | Geometry points for drawing routes on a map. Real, kept in the raw folder, just not relevant to SELECT, WHERE, JOIN, and GROUP BY, which is what this month teaches. Useful in future mapping applications.  |
+| shapes.txt | 62,713 | No | Latitude and longitude points that trace each route on a map. Kept in the raw folder for future mapping work. This month's queries do not use it. |
+
+Row counts exclude each file's header line.
 
 ## The seven tables in mtd_transit.db
 
-**agency** (1 row). MTD's own record: name, URL, timezone, contact info.
+**agency** (1 row). MTD's record: name, URL, timezone, contact info.
 
-**routes** (90 rows). One row per route variant. route_id is the primary key, route_short_name groups related variants (for example, every "Teal" schedule variant shares short_name 120), route_long_name is the human-readable color name.
+**routes** (90 rows). One row per route variant, such as TEAL and TEAL EVENING. route_id is the primary key. route_short_name is MTD's route number. One color can carry two numbers. TEAL is 12. TEAL EVENING, TEAL SATURDAY, and the five other Teal variants are 120. route_long_name is the route's name, such as Teal or Green Express. One route_long_name includes its number, 17 CHERRY. route_color is a hex code, and every variant of one color shares it. The feed has 20 colors.
 
-**stops** (1,936 rows). stop_id, stop_name, stop_lat, stop_lon, and a handful of accessibility and grouping fields. A small number of stops (5) are parent stations with child stops linked through parent_station. Most are not.
+**stops** (1,936 rows). stop_id, stop_name, stop_lat, stop_lon, plus fields for accessibility and grouping. Five rows are parent stations, with location_type 1: Illinois Terminal, Illini Union, Lincoln Square, Transit Plaza, and Round Barn Road. A parent station groups the boarding points at one site. Fifteen boarding points name their station in parent_station. The other 1,931 rows have location_type 0. Buses stop at boarding points, so the five parent stations have no rows in stop_times. The 1,936 stops share 1,925 distinct names, so one stop_name can cover more than one stop.
 
 **calendar** (514 rows). One row per service pattern: which days of the week it runs, and the date range it's valid for. Primary key is service_id.
 
-**calendar_dates** (17,281 rows). Specific date exceptions to a service pattern. exception_type 1 means service was added on that date. Foreign key back to calendar.service_id.
+**calendar_dates** (17,281 rows). Specific date exceptions to a service pattern. exception_type 1 means service was added on that date. All 17,281 rows have exception_type 1. Foreign key back to calendar.service_id. The table has no primary key. Each pair of service_id and date appears once.
 
 **trips** (8,222 rows). One row per scheduled trip: which route it belongs to, which service pattern determines when it runs, its headsign (the destination text riders see on the bus), and direction.
 
-**stop_times** (321,337 rows). One row per stop, per trip: arrival time, departure time, and the stop's position in that trip's sequence. This is the largest table by far, and the one most queries will eventually touch.
+**stop_times** (321,337 rows). One row per stop, per trip: arrival time, departure time, and the stop's position in that trip's sequence. This is the largest table, and most multi-table queries pass through it. The table has no primary key. Each pair of trip_id and stop_sequence appears once.
 
 
 ## Data Troubles
 
-**Trip IDs are ugly.** Something like `[@7.0.41202550@][4][1248701836140]/1__GN2_NONUI_SA_merged_5074` is a real trip_id, an artifact of the scheduling software MTD's feed was exported from. 96% of trips look like this. 
+**Trip IDs are ugly.** `[@7.0.41202550@][4][1248701836140]/1__GN2_NONUI_SA_merged_5074` is a real trip_id. 7,903 of the 8,222 trip_ids (96%) start with a bracketed code like this one. No exercise asks anyone to type one.
 
-**Some arrival times pass midnight.** A trip that starts before midnight and keeps running uses times like 25:00:00 or higher rather than rolling over to a new date, a GTFS convention.
+**Some arrival times pass midnight.** 13,953 stop_times rows have an arrival_time at or past 24:00:00, and the latest is 29:09:00. GTFS keeps counting hours past 24 for a trip that runs after midnight, so 25:00:00 means 1:00 a.m. on the next calendar day.
 
-**Nobody's service runs on a simple weekly pattern here.** Every single one of the 514 service_ids has every day-of-week flag set to zero in calendar.txt. The entire system runs off specific dates listed in calendar_dates instead. This tracks with how a university town's transit schedule actually works, tied to the **academic calendar** rather than a plain Monday-through-Friday pattern.
+**Every weekday flag is 0.** All 514 service_ids have every day-of-week flag set to 0 in calendar.txt. The whole system runs from the dates listed in calendar_dates. Service follows the **academic calendar**. A Tuesday in July runs 1,402 trips. A Tuesday in September runs 1,933. Tuesday, November 24, in Thanksgiving week, runs 1,498.
 
 ## Initial Run
 
@@ -53,4 +55,4 @@ WHERE monday=0 AND tuesday=0 AND wednesday=0 AND thursday=0
   AND friday=0 AND saturday=0 AND sunday=0;
 ```
 
-This returns 514, every service_id in the table. calendar.txt's weekly pattern is present in the file but functionally unused. All real scheduling happens through calendar_dates. Run this before writing a single query that filters on day of week, or the query will silently return nothing useful.
+This returns 514, every service_id in the table. The weekday columns exist, and every value in them is 0. All scheduling happens through calendar_dates. Run this check before filtering on a weekday column. A filter such as WHERE monday = 1 returns zero rows.
